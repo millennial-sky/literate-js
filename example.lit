@@ -26,4 +26,16 @@ The third paragraph.
 
 ```[example]
 console.log("This is an example")
+//#show
+
+console.log("This is an example2")
+//#show
+```
+
+```[example]
+console.log("This is an another example\n   with more than one line")
+//#show
+
+console.log("This is an another example2")
+//#show
 ```

@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
-import {readFile, writeFile, unlink} from "node:fs/promises"
-import {join, extname} from "node:path"
-import {spawn} from "node:child_process"
+import {readFile, writeFile} from "node:fs/promises"
+import {extname} from "node:path"
 
-import {parse, renderCode, renderText} from "./index.js"
+import {parse, renderCode, renderText, execString} from "./index.js"
 
 const cli = async (args) => {
   if (args.length === 0) {
@@ -54,7 +53,8 @@ const run = async ({files, includeExamples}) => {
 
   const src = await readFile(files[0], "utf8")
   const sections = parse(src)
-  process.exit(await execString(renderCode(sections, includeExamples ?? true)))
+  const {exitCode} = await execString(await renderCode(sections, includeExamples ?? true))
+  process.exit(exitCode)
 }
 
 const compile = async ({files, jsFile, mdFile, includeExamples}) => {
@@ -70,27 +70,9 @@ const compile = async ({files, jsFile, mdFile, includeExamples}) => {
     const sections = parse(src)
     const jsPath = jsFile ?? `${filename}.js`
     const mdPath = mdFile ?? `${filename}.md`
-    await writeFile(mdPath, renderText(sections))
-    await writeFile(jsPath, renderCode(sections, includeExamples ?? false))
+    await writeFile(mdPath, await renderText(sections))
+    await writeFile(jsPath, await renderCode(sections, includeExamples ?? false))
   }
-}
-
-const execString = async (jsCode, dir = "./") => {
-  const tempFilePath = join(dir, ".literate.tmp.mjs")
-
-  await writeFile(tempFilePath, jsCode)
-
-  return new Promise((resolve, reject) => {
-    const child = spawn("node", [tempFilePath])
-
-    child.stdout.pipe(process.stdout)
-    child.stderr.pipe(process.stderr)
-    child.on("error", reject)
-    child.on("close", async (code) => {
-      await unlink(tempFilePath)
-      resolve(code)
-    })
-  })
 }
 
 const fail = (...args) => {
