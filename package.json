@@ -1,0 +1,14 @@
+{
+  "name": "@millennial-sky/literate",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": "github:millennial-sky/literate-js",
+  "dependencies": {
+    "@millennial-sky/util": "^1.0.1"
+  },
+  "bin": {
+    "literate": "./cli.js"
+  }
+}

@@ -1,0 +1,25 @@
+# Heading 1
+
+## Heading 2
+
+The first paragraph.
+
+```[hide]
+console.log("This is hidden")
+```
+
+```
+console.log("Hello World 1");
+```
+
+The second paragraph.
+
+```
+console.log("Hello World 2");
+```
+
+The third paragraph.
+
+```[example]
+console.log("This is an example")
+```
