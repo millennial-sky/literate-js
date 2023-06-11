@@ -4,7 +4,7 @@
 
 The first paragraph.
 
-```[ignore]
+```[ignore]javascript
 console.log("This won't be in the js file with or without examples")
 ```
 
@@ -12,13 +12,13 @@ console.log("This won't be in the js file with or without examples")
 console.log("This is hidden")
 ```
 
-```
+```javascript
 console.log("Hello World 1");
 ```
 
 The second paragraph.
 
-```
+```c
 console.log("Hello World 2");
 ```
 
