@@ -4,6 +4,10 @@
 
 The first paragraph.
 
+```[ignore]
+console.log("This won't be in the js file with or without examples")
+```
+
 ```[hide]
 console.log("This is hidden")
 ```

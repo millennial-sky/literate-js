@@ -20,7 +20,7 @@ export const parse = (src) => {
 }
 
 export const renderCode = (sections, includeExamples) => {
-  let codeSections = sections.filter(s => s.kind === "code")
+  let codeSections = sections.filter(s => s.kind === "code" && !s.attrib?.includes("ignore"))
   if (!includeExamples) codeSections = codeSections.filter(s => !s.attrib?.includes("example"))
   return codeSections.map(s => s.code.trim()).join("\n")
 }
