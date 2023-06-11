@@ -101,7 +101,7 @@ const processExamples = async (sections) => {
 }
 
 export const execString = async (jsCode, {dir = "./", inheritOutput = true} = {}) => {
-  const tempFilePath = join(dir, ".literate.tmp.mjs")
+  const tempFilePath = join(dir, `.literate.${Date.now()}.tmp.mjs`)
 
   await writeFile(tempFilePath, jsCode)
 
