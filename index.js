@@ -86,9 +86,9 @@ const processExamples = async (sections) => {
           const out = buf.join("\n").trim()
           const isMultiline = out.includes("\n")
           if (isMultiline) 
-            return "\\\\ Output:\n\\\\   " + out.replace(/\n/g, "\n\\\\   ")
+            return "// Output:\n//   " + out.replace(/\n/g, "\n//   ")
           else
-            return "\\\\ Output: " + out
+            return "// Output: " + out
         })
 
         captureGroupIndex++
@@ -101,7 +101,8 @@ const processExamples = async (sections) => {
 }
 
 export const execString = async (jsCode, {dir = "./", inheritOutput = true} = {}) => {
-  const tempFilePath = join(dir, `.literate.${Date.now()}.tmp.mjs`)
+  const rnd = Math.random().toString(36).slice(2)
+  const tempFilePath = join(dir, `.literate.${rnd}.tmp.mjs`)
 
   await writeFile(tempFilePath, jsCode)
 
