@@ -84,11 +84,7 @@ const processExamples = async (sections) => {
           const captureGroup = captureGroups[captureGroupIndex]
           const buf = captureGroup[showCount++]
           const out = buf.join("\n").trim()
-          const isMultiline = out.includes("\n")
-          if (isMultiline) 
-            return "// Output:\n//   " + out.replace(/\n/g, "\n//   ")
-          else
-            return "// Output: " + out
+          return "//>  " + out.replace(/\n/g, "\n//>  ")
         })
 
         captureGroupIndex++
