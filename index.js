@@ -18,6 +18,10 @@ export const parse = (src) => {
     sections.push({kind: "code", attrib: attrib ?? "", lang: lang.trim(), code})
     currentIndex = codeRegexp.lastIndex
   }
+  
+  if (currentIndex < src.length) {
+    sections.push({kind: "text", attrib: "", text: src.slice(currentIndex)})
+  }
 
   return sections
 }
